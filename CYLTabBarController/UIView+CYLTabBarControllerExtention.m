@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIView+CYLTabBarControllerExtention.h"
 #import "CYLPlusButton.h"
-#if __has_include(<Lottie/Lottie.h>)
-#import <Lottie/Lottie.h>
+#if __has_include(<Lottie/Lottie-Swift.h>)
+#import <Lottie/Lottie-Swift.h>
 #else
 #endif
 
@@ -176,8 +176,9 @@
     if (!isKind) {
         return NO;
     }
-    Class classType = NSClassFromString(@"LOTAnimationView");
+    Class classType = NSClassFromString(@"Lottie.CompatibleAnimationView");
     BOOL isLottieAnimationView = ([self isKindOfClass:classType] || [self isMemberOfClass:classType]);
+    NSLog(@"classType:%@, isLottieAnimationView:%d", classType, isLottieAnimationView);
     return isLottieAnimationView;
 }
 

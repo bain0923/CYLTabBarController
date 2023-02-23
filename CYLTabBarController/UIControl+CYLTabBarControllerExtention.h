@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class LOTAnimationView;
+@class CompatibleAnimationView;
 @interface UIControl (CYLTabBarControllerExtention)
 
-- (LOTAnimationView *)cyl_lottieAnimationView;
+- (CompatibleAnimationView *)cyl_lottieAnimationView;
 - (BOOL)cyl_isChildViewControllerPlusButton;
 
 /*!

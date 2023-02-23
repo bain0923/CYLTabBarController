@@ -11,8 +11,8 @@
 #import "UIView+CYLTabBarControllerExtention.h"
 #import "CYLConstants.h"
 #import "CYLTabBarController.h"
-#if __has_include(<Lottie/Lottie.h>)
-#import <Lottie/Lottie.h>
+#if __has_include(<Lottie/Lottie-Swift.h>)
+#import <Lottie/Lottie-Swift.h>
 #else
 #endif
 
@@ -151,10 +151,10 @@
     return tabBadgePointViewOffset;
 }
 
-- (LOTAnimationView *)cyl_lottieAnimationView {
+- (CompatibleAnimationView *)cyl_lottieAnimationView {
     for (UILabel *subview in self.subviews) {
         if ([subview cyl_isLottieAnimationView]) {
-            return (LOTAnimationView *)subview;
+            return (CompatibleAnimationView *)subview;
         }
     }
     return nil;
@@ -289,12 +289,16 @@
 
 - (void)cyl_addLottieImageWithLottieURL:(NSURL *)lottieURL
                                    size:(CGSize)size {
-#if __has_include(<Lottie/Lottie.h>)
+    NSString *name = [lottieURL.lastPathComponent stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@".%@", lottieURL.pathExtension] withString:@""];
+    CompatibleAnimation *animation = [[CompatibleAnimation alloc] initWithName:name bundle:[NSBundle mainBundle]];
+    CompatibleAnimationView *lottieView = [[CompatibleAnimationView alloc] initWithCompatibleAnimation:animation];
+#if __has_include(<Lottie/Lottie-Swift.h>)
     if (self.cyl_lottieAnimationView) {
         return;
     }
     UIControl *tabButton = self;
-    LOTAnimationView *lottieView = [[LOTAnimationView alloc] initWithContentsOfURL:lottieURL];
+//    LOTAnimationView
+//    LOTAnimationView *lottieView = [[LOTAnimationView alloc] initWithContentsOfURL:lottieURL];
     lottieView.frame = CGRectMake(0, 0, size.width, size.height);
     lottieView.userInteractionEnabled = NO;
     lottieView.contentMode = UIViewContentModeScaleAspectFill;

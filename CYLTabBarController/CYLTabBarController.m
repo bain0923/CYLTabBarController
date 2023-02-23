@@ -12,8 +12,8 @@
 #import "UIViewController+CYLTabBarControllerExtention.h"
 #import "UIControl+CYLTabBarControllerExtention.h"
 #import "UIImage+CYLTabBarControllerExtention.h"
-#if __has_include(<Lottie/Lottie.h>)
-#import <Lottie/Lottie.h>
+#if __has_include(<Lottie/Lottie-Swift.h>)
+#import <Lottie/Lottie-Swift.h>
 #else
 #endif
 
